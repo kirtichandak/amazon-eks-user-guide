@@ -44,6 +44,22 @@ The following table describes the Amazon EKS resources that can be tagged and th
 |  Amazon EKS managed node groups  |  Yes  | No\. Managed node group tags do not propagate to any other resources associated with the node group\. |  Yes  | 
 |  Amazon EKS Fargate profiles  |  Yes  | No\. Fargate profile tags do not propagate to any other resources associated with the Fargate profile, such as the pods that are scheduled with it\. |  Yes  | 
 
+**Tagging the EKS cluster**  
+
+You can add tags to new or existing EKS clusters using the Amazon EKS console, AWS CLI, AWS API, or infrastructure-as-a-code tools including AWS CloudFormation or Terraform. `eksctl` can be used to add tags to a cluster during cluster creation. 
+
+During cluster creation, you can apply tags to a new cluster using the tags parameter on the [CreateCluster](https://docs.aws.amazon.com/eks/latest/APIReference/API_CreateCluster.html) API action. You can apply tags to existing clusters using the [TagResource API](https://docs.aws.amazon.com/eks/latest/APIReference/API_TagResource.html). If you are using the Amazon EKS console, you can apply tags to new or existing clusters by using the Tags tab for the cluster. 
+
+If you are using infrastructure-as-a-code tools like AWS CloudFormation you can use the tags parameter in the  AWS CloudFormation template used for creating a cluster. To learn more about tagging clusters using CloudFormation, visit [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html). For tagging using Terraform, you can use the tags argument while creating an EKS cluster. To learn more about adding tags using Terraform, visit [here] (https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster). 
+
+**Tagging nodes within a nodegroup**  
+
+Amazon EKS cluster can schedule pods on any combination of self-managed nodes and EKS managed nodes. To tag managed nodes or self managed nodes you can follow the instructions below: 
++ Tagging managed nodes - In order to tag nodes in a [managed nodegroup](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html), you should use a custom launch template. You can use the `TagSpecification` parameter of the launch template to specify tags to apply to nodes in your nodegroup. To learn more about specifying tags visit [here](https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html). You can launch managed nodegroup with a custom launch template using the EKS API, AWS CLI, CloudFormation, or the EKS Console. To learn more visit [here](https://aws.amazon.com/blogs/containers/introducing-launch-template-and-custom-ami-support-in-amazon-eks-managed-node-groups/). 
++ Tagging self managed nodes - You can apply tags to self managed nodes by creating a nodegroup with eksctl using the tags parameter.  Tags will be applied to all EC2 instances created as a part of the self managed nodegroup creation.  You can also apply tags to self-managed nodes using the AWS Management Console, to learn more visit [here](https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html).
+
+
+
 ## Tag restrictions<a name="tag-restrictions"></a>
 
 The following basic restrictions apply to tags:
