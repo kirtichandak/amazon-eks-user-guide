@@ -2,6 +2,8 @@
 
 The [Amazon EBS Container Storage Interface \(CSI\) driver](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) provides a CSI interface that allows Amazon EKS clusters to manage the lifecycle of Amazon EBS volumes for persistent volumes\.
 
+To add tags to the dynamically provisioned EBS volumes, you can use the CLI command option `--extra-volume-tags` in the CSI driver. To learn more visit [here](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/pull/353).
+
 This topic shows you how to deploy the Amazon EBS CSI Driver to your Amazon EKS cluster and verify that it works\. We recommend using version v0\.7\.0 of the driver\.
 
 **Note**  
