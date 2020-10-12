@@ -15,6 +15,8 @@ The ALB Ingress controller supports the following traffic modes:
 Your Kubernetes service must specify the `NodePort` type to use this traffic mode\.
 + **IP** – Registers pods as targets for the ALB\. Traffic reaching the ALB is directly routed to pods for your service\. You must specify the `alb.ingress.kubernetes.io/target-type: ip` annotation to use this traffic mode\.
 
+In order to tag Application Load Balancer’s created by the ALB Ingress controller, you can add the annotation `alb.ingress.kubernetes.io/tags` on the ALB Ingress controller to specify any additional tags that should be applied to ALB’s created. To learn more about the tags annotation visit [here](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/#tags). 
+
 For other available annotations supported by the ALB Ingress Controller, see [Ingress annotations](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/)\.
 
 This topic shows you how to configure the ALB Ingress Controller to work with your Amazon EKS cluster\.
